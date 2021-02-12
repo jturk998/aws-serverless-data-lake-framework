@@ -120,6 +120,60 @@ Resources:
       ResourceArn: !Sub arn:aws:::s3:${rCentralBucket}/
       UseServiceLinkedRole: True
 
+  rLandingBucket:
+    Type: AWS::S3::Bucket
+    Condition: CreateMultipleBuckets
+    DependsOn: rQueueCatalogPolicy
+    Properties:
+      BucketName:
+        !If [
+          UseCustomBucketPrefix,
+          !Sub "${pCustomBucketPrefix}-landing",
+          !Sub "${pOrganizationName}-${pApplicationName}-${pEnvironment}-${AWS::Region}-${AWS::AccountId}-landing",
+        ]
+      BucketEncryption:
+        ServerSideEncryptionConfiguration:
+          - ServerSideEncryptionByDefault:
+              SSEAlgorithm: AES256
+      PublicAccessBlockConfiguration:
+        BlockPublicAcls: True
+        BlockPublicPolicy: True
+        IgnorePublicAcls: True
+        RestrictPublicBuckets: True
+      NotificationConfiguration:
+        QueueConfigurations:
+          - Event: s3:ObjectCreated:*
+            Queue: !GetAtt rQueueCatalog.Arn
+          - Event: s3:ObjectRemoved:*
+            Queue: !GetAtt rQueueCatalog.Arn
+
+  rLandingBucketPolicy:
+    Type: AWS::S3::BucketPolicy
+    Condition: CreateMultipleBuckets
+    Properties:
+      Bucket: !Ref rLandingBucket
+      PolicyDocument:
+        Version: 2012-10-17
+        Statement:
+          - Sid: AllowSSLRequestsOnly
+            Action: s3:*
+            Effect: Deny
+            Resource:
+              - !Sub arn:aws:s3:::${rLandingBucket}/*
+              - !Sub arn:aws:s3:::${rLandingBucket}
+            Condition:
+              Bool:
+                aws:SecureTransport: False
+            Principal: "*"
+
+  rLandingBucketLakeFormationS3Registration:
+    Type: AWS::LakeFormation::Resource
+    Condition: CreateMultipleBuckets
+    Properties:
+      ResourceArn: !Sub arn:aws:::s3:${rLandingBucket}/
+      UseServiceLinkedRole: True
+
+
   rRawBucket:
     Type: AWS::S3::Bucket
     Condition: CreateMultipleBuckets
