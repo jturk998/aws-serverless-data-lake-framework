@@ -29,11 +29,11 @@ do
     case "$option" in
         s  ) sflag=true; DEVOPS_PROFILE=${OPTARG};;
         t  ) tflag=true; CHILD_PROFILE=${OPTARG};;
-        r  ) rflag=true; REGION=${OPTARG};;
+        r  ) rflag=true; REGION=${2};;
         e  ) eflag=true; ENV=${OPTARG};;
         x  ) xflag=true; SCM=${OPTARG};;
         d  ) dflag=true;;
-        f  ) fflag=true; PERM_BOUND=${OPTARG};;
+        f  ) fflag=true; PERM_BOUND=$;;
         o  ) oflag=true;;
         c  ) cflag=true;;
         h  ) usage; exit;;
