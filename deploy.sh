@@ -128,7 +128,7 @@ function deploy_sdlf_foundations()
 
 if $fflag
 then
-    echo "ARN ${PERM_BOUND}"
+    echo "ARN ${PERM_BOUND}" >&2
     echo "Deploying SDLF foundational repositories..." >&2
     declare -a REPOSITORIES=("sdlf-foundations" "sdlf-team" "sdlf-pipeline" "sdlf-dataset" "sdlf-datalakeLibrary" "sdlf-pipLibrary" "sdlf-stageA" "sdlf-stageB" "sdlf-utils")
     if $xflag ; then
