@@ -5,12 +5,15 @@ Parameters:
   pTeamFoundationsRepository:
     Type: String
     Default: sdlf-team
+  PermBound:
+    Type: String
 
 Resources:
   ######## IAM #########
   rTeamReposCodeBuildRole:
     Type: AWS::IAM::Role
     Properties:
+      PermissionsBoundary: !Ref PermBound
       AssumeRolePolicyDocument:
         Version: 2012-10-17
         Statement:
@@ -180,6 +183,7 @@ Resources:
   rLambdaCodeBuildTriggerRole:
     Type: AWS::IAM::Role
     Properties:
+      PermissionsBoundary: !Ref PermBound
       AssumeRolePolicyDocument:
         Statement:
           - Action: sts:AssumeRole
