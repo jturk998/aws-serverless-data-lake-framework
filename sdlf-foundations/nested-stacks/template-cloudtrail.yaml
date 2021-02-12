@@ -127,6 +127,7 @@ Resources:
   rTrailLogGroupRole:
     Type: AWS::IAM::Role
     Properties:
+      PermissionsBoundary: !Ref pPermissionsBoundary
       AssumeRolePolicyDocument:
         Version: 2012-10-17
         Statement:
