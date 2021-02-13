@@ -10,7 +10,7 @@ cflag=false
 xflag=false
 
 DIRNAME=$(pwd)
-PERM_BOUND=${4}
+PERM_BOUND=${2}
 
 usage () { echo "
     -h -- Opens up this help message
