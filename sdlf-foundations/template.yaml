@@ -51,6 +51,9 @@ Parameters:
     Description: Email address for SNS notifications
     Type: String
     Default: nobody@amazon.com
+  pPermissionsBoundary:
+    Description: Added place for Permissions boundary
+    Type: String
 
 Conditions:
   DeployCloudTrail: !Equals [!Ref pCloudTrailEnabled, "true"]
@@ -95,6 +98,7 @@ Resources:
         pEnvironment: !Ref pEnvironment
         pKMSKeyId: !GetAtt [rKMSStack, Outputs.oKMSKeyId]
         pOrganizationName: !Ref pOrganizationName
+        pPermissionsBoundary: !Ref pPermissionsBoundary
       Tags:
         - Key: tagging-policy
           Value: !Sub ${pOrganizationName}-${pApplicationName}-${pEnvironment}-foundations
