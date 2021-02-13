@@ -51,6 +51,8 @@ Parameters:
     AllowedValues:
       - "true"
       - "false"
+  pPermissionsBoundary:
+    Type: String
 
 Conditions:
   InternalBucket: !Equals [!Ref pExternalTrailBucket, ""]
