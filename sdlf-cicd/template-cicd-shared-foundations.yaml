@@ -18,6 +18,8 @@ Parameters:
   pTeamFoundationsRepository:
     Type: String
     Default: sdlf-team
+  PermBound:
+    Type: String
 
 Mappings:
   pCodeCommitBranch:
@@ -82,6 +84,7 @@ Resources:
   rCodeCommitRole:
     Type: AWS::IAM::Role
     Properties:
+      PermissionsBoundary: !Ref PermBound
       Description: Role assumed by CodePipeline in child AWS account
       Path: /
       RoleName: !Sub sdlf-cicd-foundations-codecommit-${pEnvironment}
@@ -177,6 +180,7 @@ Resources:
     Condition: CrossAccount
     Type: AWS::IAM::Role
     Properties:
+      PermissionsBoundary: !Ref PermBound
       AssumeRolePolicyDocument:
         Version: 2012-10-17
         Statement:
