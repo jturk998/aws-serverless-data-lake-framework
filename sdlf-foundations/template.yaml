@@ -81,6 +81,7 @@ Resources:
         pKMSKeyId: !GetAtt [rKMSStack, Outputs.oKMSKeyId]
         pNumBuckets: !Ref pNumBuckets
         pOrganizationName: !Ref pOrganizationName
+        pPermissionsBoundary: !Ref pPermissionsBoundary
       Tags:
         - Key: tagging-policy
           Value: !Sub ${pOrganizationName}-${pApplicationName}-${pEnvironment}-foundations
@@ -128,6 +129,7 @@ Resources:
         pLambdaCatalog: !GetAtt [rS3Stack, Outputs.oLambdaCatalog]
         pLambdaRouting: !GetAtt [rS3Stack, Outputs.oLambdaRouting]
         pSNSNotificationsEmail: !Ref pSNSNotificationsEmail
+        pPermissionsBoundary: !Ref pPermissionsBoundary
       Tags:
         - Key: tagging-policy
           Value: !Sub ${pOrganizationName}-${pApplicationName}-${pEnvironment}-foundations
@@ -146,6 +148,7 @@ Resources:
         pKMSKeyId: !GetAtt [rKMSStack, Outputs.oKMSKeyId]
         pOrganizationName: !Ref pOrganizationName
         pPipelineBucket: !GetAtt [rS3Stack, Outputs.oPipelineBucket]
+        pPermissionsBoundary: !Ref pPermissionsBoundary
       Tags:
         - Key: tagging-policy
           Value: !Sub ${pOrganizationName}-${pApplicationName}-${pEnvironment}-foundations
