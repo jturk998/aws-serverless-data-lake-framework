@@ -162,6 +162,7 @@ then
             pChildAccountId="${CHILD_ACCOUNT}" \
         --tags Framework=sdlf \
         --capabilities "CAPABILITY_NAMED_IAM" "CAPABILITY_AUTO_EXPAND" \
+        --parameters ParameterKey=PermBound,ParameterValue=${PERM_BOUND}\
         --region ${REGION} \
         --profile ${DEVOPS_PROFILE}
     echo "Waiting for stack to be created ..."
