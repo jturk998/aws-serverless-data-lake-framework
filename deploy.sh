@@ -162,6 +162,7 @@ then
         --tags Framework=sdlf \
         --capabilities "CAPABILITY_NAMED_IAM" "CAPABILITY_AUTO_EXPAND" \
         --region ${REGION} \
+        --parameters ParameterKey=PermBound,ParameterValue=${PERM_BOUND}\
         --profile ${DEVOPS_PROFILE}
     echo "Waiting for stack to be created ..."
     aws cloudformation wait stack-create-complete --profile ${DEVOPS_PROFILE} --region ${REGION} --stack-name ${STACK_NAME}
@@ -184,6 +185,7 @@ then
         --tags Framework=sdlf \
         --capabilities "CAPABILITY_NAMED_IAM" "CAPABILITY_AUTO_EXPAND" \
         --region ${REGION} \
+        --parameters ParameterKey=PermBound,ParameterValue=${PERM_BOUND}\
         --profile ${CHILD_PROFILE}
     echo "Waiting for stack to be created ..."
     aws cloudformation wait stack-create-complete --profile ${CHILD_PROFILE} --region ${REGION} --stack-name ${STACK_NAME}
