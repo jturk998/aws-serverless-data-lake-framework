@@ -33,7 +33,7 @@ do
         e  ) eflag=true; ENV=${OPTARG};;
         x  ) xflag=true; SCM=${OPTARG};;
         d  ) dflag=true;;
-        f  ) fflag=true; PERM_BOUND=${2};;
+        f  ) fflag=true; PERM_BOUND=${4};;
         o  ) oflag=true;;
         c  ) cflag=true;;
         h  ) usage; exit;;
