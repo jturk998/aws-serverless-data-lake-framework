@@ -10,6 +10,7 @@ cflag=false
 xflag=false
 
 DIRNAME=$(pwd)
+PERM_BOUND=${4}
 
 usage () { echo "
     -h -- Opens up this help message
@@ -33,7 +34,7 @@ do
         e  ) eflag=true; ENV=${OPTARG};;
         x  ) xflag=true; SCM=${OPTARG};;
         d  ) dflag=true;;
-        f  ) fflag=true; PERM_BOUND=${4};;
+        f  ) fflag=true;;
         o  ) oflag=true;;
         c  ) cflag=true;;
         h  ) usage; exit;;
