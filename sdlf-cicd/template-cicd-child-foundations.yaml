@@ -26,6 +26,8 @@ Parameters:
   pTeamFoundationsRepository:
     Type: String
     Default: sdlf-team
+  PermBound:
+    Type: String
 
 Mappings:
   pCodeCommitBranch:
@@ -100,6 +102,7 @@ Resources:
     Type: AWS::IAM::Role
     Properties:
       RoleName: sdlf-cicd-codebuild
+      PermissionsBoundary: !Ref PermBound
       AssumeRolePolicyDocument:
         Version: 2012-10-17
         Statement:
@@ -509,6 +512,7 @@ Resources:
     Type: AWS::IAM::Role
     Properties:
       RoleName: sdlf-cicd-codepipeline
+      PermissionsBoundary: !Ref PermBound
       AssumeRolePolicyDocument:
         Version: 2012-10-17
         Statement:
@@ -553,6 +557,7 @@ Resources:
     Type: AWS::IAM::Role
     Properties:
       RoleName: sdlf-cicd-cw-trigger
+      PermissionsBoundary: !Ref PermBound
       AssumeRolePolicyDocument:
         Version: 2012-10-17
         Statement:
@@ -578,6 +583,7 @@ Resources:
     Type: AWS::IAM::Role
     Properties:
       RoleName: sdlf-lakeformation-admin
+      PermissionsBoundary: !Ref PermBound
       AssumeRolePolicyDocument:
         Version: 2012-10-17
         Statement:
